@@ -1,58 +1,81 @@
 package ua.com.foxmainded.anagrams;
 
+import java.util.Scanner;
+
 public class Anagrams {
+       
 
-	public void reverseText(String text) {
+    	public String reverseString(String inputString) {
 
-		Anagrams Text = new Anagrams();
+    		if (inputString == null) {
+    			throw new IllegalArgumentException("String can not be null");
+    		}
+    		String inputWords[] = inputString.split(" ");
+    		String outputWords[] = new String[inputWords.length];
 
-		for (String part : text.split(" ")) {
-			Text.reverseWord(part);
-//			System.out.print(" ");
-		}
-	}
+    		int i = 0;
 
-	private StringBuilder reverseWord(String word) {
+    		for (String inputWord : inputWords) {
 
-		StringBuilder reversed = new StringBuilder(word);
+    			outputWords[i] = reverseWord(inputWord);
+    			i++;
+    		}
+    		return String.join(" ", outputWords);
+    	}
 
-		int i = 0, j = reversed.length() - 1;
-		do {
-			char symbolFirst = reversed.charAt(i);
-			char symbolSecond = reversed.charAt(j);
-			if (Character.isLetter(symbolFirst) & Character.isLetter(symbolSecond)) {
-				char temp = symbolFirst;
-				symbolFirst = symbolSecond;
-				symbolSecond = temp;
-				reversed.setCharAt(i, symbolFirst);
-				reversed.setCharAt(j, symbolSecond);
-				i++;
-				j--;
-			}
+    	private String reverseWord(String inputWord) {
 
-			if (!Character.isLetter(symbolFirst) & !Character.isLetter(symbolSecond)) {
-				i++;
-				j--;
-			}
+    		char outputWord[] = new char[inputWord.length()];
+    		outputWord = inputWord.toCharArray();
 
-			if (Character.isLetter(symbolFirst) & !Character.isLetter(symbolSecond)) {
-				j--;
-			}
+    		int beginIndex = 0;
+    		int endIndex = outputWord.length - 1;
 
-			if (!Character.isLetter(symbolFirst) & Character.isLetter(symbolSecond)) {
-				i++;
-			}
+    		for (int i = 0; i < outputWord.length; i++) {
 
-		} while (i < j);
+    			char swappSymbol = outputWord[endIndex];
 
-		return reversed;
-	}
+    			if (beginIndex < endIndex) {
 
-	public static void main(String[] args) {
+    				if (!Character.isLetter(outputWord[beginIndex])) {
+    					beginIndex++;
 
-		Anagrams insert = new Anagrams();
-		insert.reverseText("a1bcd efg!h");
+    				} else {
+    					if (!Character.isLetter(swappSymbol)) {
+    						endIndex--;
+    						swappSymbol = outputWord[endIndex];
 
-	}
+    					} else {
+    						outputWord[endIndex] = outputWord[beginIndex];
+    						outputWord[beginIndex] = swappSymbol;
+
+    						beginIndex++;
+    						endIndex--;
+
+    						swappSymbol = outputWord[endIndex];
+    					}
+    				}
+    			}
+    		}
+    		return new String(outputWord);
+    	}
+
+
+
+
+    public static void main(String[] args) {
+
+	Anagrams reverse = new Anagrams();
+	
+	Scanner input = new Scanner(System.in);
+	
+	System.out.print("Input a string to reverse: ");
+	
+	String inputString = input.nextLine();
+	
+	System.out.printf("Reversed string:           " + reverse.reverseString(inputString));
+//	                   Input a string to reverse: 
+	input.close();
+    }
 
 }
