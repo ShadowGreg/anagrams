@@ -1,12 +1,13 @@
 package ua.com.foxmainded.anagrams;
 
 public class Reverse {
-    
-    void swapElements(char swapChar[], char swapSimbol,
-            int firstIndex, int secondIndex) {
+
+    void swapElements(char swapChar[], int firstIndex, int secondIndex) {
+        char swapSimbol;
+        swapSimbol = swapChar[firstIndex];
         swapChar[firstIndex] = swapChar[secondIndex];
         swapChar[secondIndex] = swapSimbol;
-        
+
     }
 
     public String reverseString(String inputString) {
@@ -51,8 +52,7 @@ public class Reverse {
                         swappSymbol = outputWord[endIndex];
 
                     } else {
-                        swapElements(outputWord,
-                                swappSymbol,  endIndex, beginIndex);
+                        swapElements(outputWord, endIndex, beginIndex);
                         beginIndex++;
                         endIndex--;
 
