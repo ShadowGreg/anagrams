@@ -1,8 +1,25 @@
 package ua.com.foxmainded.anagrams;
 
 public class Reverse {
+    private static final String SPACE = " ";
 
-    void swapElements(char swapChar[], int firstIndex, int secondIndex) {
+    public String reverseString(String inputString) {
+
+        if (inputString == null) {
+            throw new IllegalArgumentException("String can not be null");
+        }
+        String[] inputWords = inputString.split(SPACE);
+        String[] outputWords = new String[inputWords.length];
+        int i = 0;
+        for (String inputWord : inputWords) {
+            outputWords[i] = reverseWord(inputWord);
+            i++;
+        }
+        return String.join(SPACE, outputWords);
+    }
+
+    
+   private void swapElements(char[] swapChar, int firstIndex, int secondIndex) {
         char swapSimbol;
         swapSimbol = swapChar[firstIndex];
         swapChar[firstIndex] = swapChar[secondIndex];
@@ -10,54 +27,21 @@ public class Reverse {
 
     }
 
-    public String reverseString(String inputString) {
-        String slit = " ";
-
-        if (inputString == null) {
-            throw new IllegalArgumentException("String can not be null");
-        }
-        String inputWords[] = inputString.split(slit);
-        String outputWords[] = new String[inputWords.length];
-
-        int i = 0;
-
-        for (String inputWord : inputWords) {
-
-            outputWords[i] = reverseWord(inputWord);
-            i++;
-        }
-        return String.join(slit, outputWords);
-    }
-
-    private String reverseWord(String inputWord) {
-
-        char outputWord[] = new char[inputWord.length()];
-        outputWord = inputWord.toCharArray();
-
+       private String reverseWord(String inputWord) {
+           char[] outputWord = inputWord.toCharArray();
         int beginIndex = 0;
         int endIndex = outputWord.length - 1;
-
         for (int i = 0; i < outputWord.length; i++) {
-
-            char swappSymbol = outputWord[endIndex];
-
+            char swapSymbol = outputWord[endIndex];//
             if (beginIndex < endIndex) {
-
                 if (!Character.isLetter(outputWord[beginIndex])) {
                     beginIndex++;
-
                 } else {
-                    if (!Character.isLetter(swappSymbol)) {
-                        endIndex--;
-                        swappSymbol = outputWord[endIndex];
-
-                    } else {
+                    if (Character.isLetter(swapSymbol)) {
                         swapElements(outputWord, endIndex, beginIndex);
                         beginIndex++;
-                        endIndex--;
-
-                        swappSymbol = outputWord[endIndex];
                     }
+                    endIndex--;
                 }
             }
         }
