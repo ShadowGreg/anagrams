@@ -18,17 +18,15 @@ public class Reverse {
         return String.join(SPACE, outputWords);
     }
 
-    
-   private void swapElements(char[] swapChar, int firstIndex, int secondIndex) {
+    private void swapElements(char[] swapChar, int firstIndex, int secondIndex) {
         char swapSimbol;
         swapSimbol = swapChar[firstIndex];
         swapChar[firstIndex] = swapChar[secondIndex];
         swapChar[secondIndex] = swapSimbol;
-
     }
 
-       private String reverseWord(String inputWord) {
-           char[] outputWord = inputWord.toCharArray();
+    private String reverseWord(String inputWord) {
+        char[] outputWord = inputWord.toCharArray();
         int beginIndex = 0;
         int endIndex = outputWord.length - 1;
         for (int i = 0; i < outputWord.length; i++) {
