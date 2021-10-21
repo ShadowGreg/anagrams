@@ -8,6 +8,14 @@ public class Reverse {
         if (inputString == null) {
             throw new IllegalArgumentException("String can not be null");
         }
+        if (inputString == SPACE) {
+            char[] outputWord = SPACE.toCharArray();
+            return new String(outputWord);
+        }
+        if (inputString == SPACE + SPACE) {
+            char[] outputWord = (SPACE+SPACE).toCharArray();
+            return new String(outputWord);
+        }
         String[] inputWords = inputString.split(SPACE);
         String[] outputWords = new String[inputWords.length];
         int i = 0;
