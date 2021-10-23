@@ -2,19 +2,21 @@ package ua.com.foxmainded.anagrams;
 
 public class Reverse {
     private static final String SPACE = " ";
-
+    
     public String reverseString(String inputString) {
 
         if (inputString == null) {
             throw new IllegalArgumentException("String can not be null");
         }
-        if (inputString == SPACE) {
-            char[] outputWord = SPACE.toCharArray();
-            return new String(outputWord);
-        }
-        if (inputString == SPACE + SPACE) {
-            char[] outputWord = (SPACE+SPACE).toCharArray();
-            return new String(outputWord);
+        long countSpace = inputString.chars().filter(e -> e == ' ').count();
+        long countChar = inputString.chars().filter(e -> e != ' ').count();
+        if (countChar == 0) {
+            char[] outputWord = new char[inputString.length()];
+            for (int i=0;i<countSpace;i++) {
+            outputWord[i] = SPACE.charAt(0);
+            }
+           String string = String.valueOf(outputWord);
+            return string;
         }
         String[] inputWords = inputString.split(SPACE);
         String[] outputWords = new String[inputWords.length];
