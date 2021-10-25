@@ -2,7 +2,7 @@ package ua.com.foxmainded.anagrams;
 
 public class Reverse {
     private static final String SPACE = " ";
-    
+
     public String reverseString(String inputString) {
 
         if (inputString == null) {
@@ -12,10 +12,10 @@ public class Reverse {
         long countChar = inputString.chars().filter(e -> e != ' ').count();
         if (countChar == 0) {
             char[] outputWord = new char[inputString.length()];
-            for (int i=0;i<countSpace;i++) {
-            outputWord[i] = SPACE.charAt(0);
+            for (int i = 0; i < countSpace; i++) {
+                outputWord[i] = SPACE.charAt(0);
             }
-           String string = String.valueOf(outputWord);
+            String string = String.valueOf(outputWord);
             return string;
         }
         String[] inputWords = inputString.split(SPACE);
