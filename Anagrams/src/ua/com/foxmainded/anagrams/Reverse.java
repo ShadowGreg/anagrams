@@ -15,8 +15,7 @@ public class Reverse {
             for (int i = 0; i < countSpace; i++) {
                 outputWord[i] = SPACE.charAt(0);
             }
-            String string = String.valueOf(outputWord);
-            return string;
+            return String.valueOf(outputWord);
         }
         String[] inputWords = inputString.split(SPACE);
         String[] outputWords = new String[inputWords.length];
